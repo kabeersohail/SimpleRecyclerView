@@ -1,5 +1,6 @@
 package com.example.simplerecyclerview
 
 data class ModelX(
-val text: String
+    val id: Int,
+    val text: String
 )

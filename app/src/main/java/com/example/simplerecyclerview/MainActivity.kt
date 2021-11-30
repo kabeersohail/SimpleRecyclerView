@@ -14,15 +14,15 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         val x = listOf(
-            ModelX("SOHAIL"),
-            ModelX("SALMAN"),
-            ModelX("NIRGIN"),
-            ModelX("HANNAN"),
-            ModelX("NIKHATH"),
-            ModelX("MAARKHAI"),
+            ModelX(1,"SOHAIL"),
+            ModelX(2,"SALMAN"),
+            ModelX(3,"NIRGIN"),
+            ModelX(4,"HANNAN"),
+            ModelX(5,"NIKHATH"),
+            ModelX(6,"MAARKHAI")
         )
 
-        adapter.data = x
+        adapter.submitList(x)
 
     }
 }
