@@ -7,21 +7,21 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecyclerview.databinding.SingleItemBinding
 
-class RecyclerViewAdapter : ListAdapter<ModelX,RecyclerViewAdapter.MyViewHolder>(RecyclerViewDiffCallback()) {
+class RecyclerViewAdapter(val clickListener: RecyclerViewListener) : ListAdapter<ModelX,RecyclerViewAdapter.MyViewHolder>(RecyclerViewDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        holder.bind(getItem(position),clickListener)
     }
 
     class MyViewHolder private constructor(private val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ModelX) {
+        fun bind(item: ModelX, clickListener: RecyclerViewListener) {
             binding.data = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -45,4 +45,8 @@ class RecyclerViewAdapter : ListAdapter<ModelX,RecyclerViewAdapter.MyViewHolder>
 
     }
 
+}
+
+class RecyclerViewListener(val listener: (id: Long) -> Unit){
+    fun onClick(data: ModelX) { listener(data.id) }
 }

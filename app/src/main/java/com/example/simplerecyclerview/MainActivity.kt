@@ -2,14 +2,20 @@ package com.example.simplerecyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import java.security.AccessController.getContext
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val adapter = RecyclerViewAdapter()
+        val adapter = RecyclerViewAdapter(RecyclerViewListener{
+            id -> Toast.makeText(this,"SALMAN",Toast.LENGTH_SHORT).show()
+            Log.d("SOHAIL","$id")
+        })
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
 

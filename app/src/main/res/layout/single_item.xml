@@ -7,11 +7,16 @@
         <variable
             name="data"
             type="com.example.simplerecyclerview.ModelX" />
+
+        <variable
+            name="clickListener"
+            type="com.example.simplerecyclerview.RecyclerViewListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onClick(data)}">
 
         <TextView
             android:id="@+id/my_id"
@@ -25,7 +30,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            app:titleAdapter="@{data}"
             android:id="@+id/my_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +38,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/my_image_view"
             app:layout_constraintStart_toStartOf="@id/my_id"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleAdapter="@{data}" />
 
         <ImageView
             android:id="@+id/my_image_view"
@@ -42,8 +47,8 @@
             android:layout_height="35dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:imageAdapter="@{data}"
             android:layout_marginBottom="8dp"
+            app:imageAdapter="@{data}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
