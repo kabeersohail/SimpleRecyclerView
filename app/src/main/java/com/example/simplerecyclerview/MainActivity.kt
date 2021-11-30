@@ -8,18 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import java.security.AccessController.getContext
 
 class MainActivity : AppCompatActivity() {
+    lateinit var x: List<ModelX>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val adapter = RecyclerViewAdapter(RecyclerViewListener{
-            id -> Toast.makeText(this,"SALMAN",Toast.LENGTH_SHORT).show()
-            Log.d("SOHAIL","$id")
+            Toast.makeText(this,"$it",Toast.LENGTH_SHORT).show()
+            val isExpanded = x[it.toInt()-1].isExpanded.get()
+            x[it.toInt()-1].isExpanded.set(!isExpanded!!)
+            Log.d("SOHAIL","$it")
         })
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
 
-        val x = listOf(
+        x = listOf(
             ModelX(1,"SOHAIL"),
             ModelX(2,"SALMAN"),
             ModelX(3,"NIRGIN"),
