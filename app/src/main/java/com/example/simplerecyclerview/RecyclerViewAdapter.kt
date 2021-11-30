@@ -21,9 +21,8 @@ class RecyclerViewAdapter : ListAdapter<ModelX,RecyclerViewAdapter.MyViewHolder>
     class MyViewHolder private constructor(private val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ModelX) {
-            binding.myId.text = item.id.toString()
-            binding.myTitle.text = item.text
-            binding.myImageView.setImageResource(R.drawable.info)
+            binding.data = item
+            binding.executePendingBindings()
         }
 
         companion object {
