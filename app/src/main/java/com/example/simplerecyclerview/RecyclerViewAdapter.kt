@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplerecyclerview.databinding.SingleItemBinding
 
-class RecyclerViewAdapter(val clickListener: RecyclerViewListener) : ListAdapter<ModelX,RecyclerViewAdapter.MyViewHolder>(RecyclerViewDiffCallback()) {
+class RecyclerViewAdapter(private val clickListener: RecyclerViewListener) : ListAdapter<ModelX,RecyclerViewAdapter.MyViewHolder>(RecyclerViewDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder.from(parent)
@@ -42,11 +42,9 @@ class RecyclerViewAdapter(val clickListener: RecyclerViewListener) : ListAdapter
         override fun areContentsTheSame(oldItem: ModelX, newItem: ModelX): Boolean {
             return oldItem == newItem
         }
-
     }
-
 }
 
-class RecyclerViewListener(val listener: (id: Long) -> Unit){
+class RecyclerViewListener(val listener: (id: Int) -> Unit){
     fun onClick(data: ModelX) { listener(data.id) }
 }
